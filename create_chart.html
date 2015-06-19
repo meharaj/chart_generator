@@ -1,0 +1,91 @@
+<html>
+  <head>
+  <script type="text/javascript" src="js/rgbcolor.js"></script>
+    <script type="text/javascript" src="js/StackBlur.js"></script>
+		<script type="text/javascript" src="js/canvg.js"></script>
+     <script type="text/javascript" src="js/fusioncharts.js"></script>
+<script type="text/javascript" src="js/fusioncharts.charts.js"></script>
+      <script>
+	  var chart_data;
+	 // var svg_string;
+	  var count=0;
+	  
+	  function genarate(type,data)
+	  {
+	  console.log(arguments.length);
+	  FusionCharts.ready(function(){
+	  if(data==0)
+	  {
+		  console.log("new record");
+		   myjson={
+			"type": type,
+			"renderAt": "chartContainer",
+			"width": "600",
+			"height": "400",
+			"dataFormat": "json",
+			"dataSource": {
+				"chart": {
+					"caption": "profit according to years",
+					"subCaption": "Harry's SuperMart",
+					"xAxisName": "YPartcipent Id",
+					"yAxisName": "Votes",
+					
+				   "theme": "zune"
+				},
+				"data": [ ]
+			}
+		}
+		
+		for(var i=0;i<5;i++)
+				{
+					participent_id=i+1;
+					var votes=Math.floor((Math.random()*25000)+10000);
+					console.log(participent_id +":"+ votes);
+					myjson.dataSource.data[i]={label:participent_id,value:votes};
+				
+				}
+				chart_data=myjson;
+	  }
+	  else
+	  {
+		chart_data.type=type;
+	  }
+			
+      var results = new FusionCharts(chart_data);
+	  chart_data= myjson;
+	  results.render();
+	  //svg_string=canvg("img", results.getSVGString());
+	  document.getElementById("save").hidden=false;
+	  document.getElementById("type").hidden=false;
+})
+
+}
+function redraw()
+{
+console.log("redraw")
+var type=document.getElementById("type").value;
+genarate(type,1);
+}	  
+
+      </script>
+  </head>
+  <body>
+	  <button onclick="genarate('bar2d',0);">Genarate data</button>\
+	  <button id="save" onclick="" hidden>Save</button>
+	  <select onchange="redraw()" id="type" hidden>
+		<option value="bar2d">Bar chart</option>
+		<option value="column2d">Column chart</option>
+		<option value="line">line chart</option>
+		<option value="pie2d">pie chart</option>
+	  </select>
+	  <div id="chartContainer">FusionCharts XT will load here!</div>
+	  //<canvas id="img"></canvas>
+	  
+  
+  </body>
+</html>
+
+
+
+
+

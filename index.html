@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Responsive navigation by @toddmotto | toddmotto.com</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta name="author" content="@toddmotto">
+		<link href="css/main.css" rel="stylesheet">
+		<link href="css/demo.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="header">
+			<h1>Chat Generator</h1>
+			
+		</div>
+		
+		<div class="wrapper">
+			<div class="main">
+				
+				<!-- Nav -->
+				<nav class="nav">
+					<ul class="nav-list">
+						<li class="nav-item"><a href="create_chart.html" target="charts" >CREATE CHART</a></li>
+						<li class="nav-item"><a href="dash_board.html" target="charts">DASH BOARD</a></li>
+						
+					</ul>
+				</nav>
+				<!-- /Nav -->
+				
+				<div class="content">
+				<iframe src="create_chart.html" name="charts" width="100%" height="800">
+				</iframe>
+					
+				</div>
+			</div>
+		</div>
+		
+		<script>
+		(function () {
+		
+		    // Create mobile element
+		    var mobile = document.createElement('div');
+		    mobile.className = 'nav-mobile';
+		    document.querySelector('.nav').appendChild(mobile);
+		
+		    // hasClass
+		    function hasClass(elem, className) {
+		        return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+		    }
+		
+		    // toggleClass
+		    function toggleClass(elem, className) {
+		        var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, ' ') + ' ';
+		        if (hasClass(elem, className)) {
+		            while (newClass.indexOf(' ' + className + ' ') >= 0) {
+		                newClass = newClass.replace(' ' + className + ' ', ' ');
+		            }
+		            elem.className = newClass.replace(/^\s+|\s+$/g, '');
+		        } else {
+		            elem.className += ' ' + className;
+		        }
+		    }
+		
+		    // Mobile nav function
+		    var mobileNav = document.querySelector('.nav-mobile');
+		    var toggle = document.querySelector('.nav-list');
+		    mobileNav.onclick = function () {
+		        toggleClass(this, 'nav-mobile-open');
+		        toggleClass(toggle, 'nav-active');
+		    };
+		})();
+		</script>
+	
+		<!-- Demo Analytics -->
+		<script>
+			var _gaq=[['_setAccount','UA-20440416-10'],['_trackPageview']];
+			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+			g.src='//www.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g,s)})(document,'script');
+		</script>
+		
+		
+		
+	</body>
+</html>
