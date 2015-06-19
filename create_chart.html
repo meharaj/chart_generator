@@ -7,7 +7,7 @@
 <script type="text/javascript" src="js/fusioncharts.charts.js"></script>
       <script>
 	  var chart_data;
-	 // var svg_string;
+	  var svg_string,res_var;
 	  var count=0;
 	  
 	  function genarate(type,data)
@@ -53,8 +53,13 @@
 			
       var results = new FusionCharts(chart_data);
 	  chart_data= myjson;
-	  results.render();
-	  //svg_string=canvg("img", results.getSVGString());
+	  res_var=results 
+
+	  
+	
+	  results.render("chartContainer");
+	 
+	  
 	  document.getElementById("save").hidden=false;
 	  document.getElementById("type").hidden=false;
 })
@@ -66,12 +71,22 @@ console.log("redraw")
 var type=document.getElementById("type").value;
 genarate(type,1);
 }	  
-
+function save()
+{
+var c=document.getElementById("img");
+canvg(c, res_var.getSVGString(), { 
+                ignoreMouse: true, 
+                ignoreAnimation: true 
+            });
+var c=document.getElementById("img");
+window.location.href = c.toDataURL().replace("image/png", 
+                "image/octet-stream;content-disposition:attachment; filename=fusioncharts");
+}
       </script>
   </head>
   <body>
-	  <button onclick="genarate('bar2d',0);">Genarate data</button>\
-	  <button id="save" onclick="" hidden>Save</button>
+	  <button onclick="genarate('bar2d',0);">Genarate data</button>
+	  <button id="save" onclick="save();" download="img.png" hidden>Save</button>
 	  <select onchange="redraw()" id="type" hidden>
 		<option value="bar2d">Bar chart</option>
 		<option value="column2d">Column chart</option>
@@ -79,7 +94,7 @@ genarate(type,1);
 		<option value="pie2d">pie chart</option>
 	  </select>
 	  <div id="chartContainer">FusionCharts XT will load here!</div>
-	  //<canvas id="img"></canvas>
+	  <canvas id="img"></canvas>
 	  
   
   </body>
