@@ -8,6 +8,7 @@
 		//localStorage.clear()
 		
 		for (i = 0; i < localStorage.length; i++)   {
+		document.getElementById("del").hidden=false;
     k=localStorage.key(i) ;
 	ch=k.split("-");
 	if(ch[0]=="chart")
@@ -24,16 +25,28 @@
 	  div.appendChild(img);
  document.body.appendChild(div);
 	  
-	 // console.log(ch[0]+"==="+img);
+	 
+}
+}}
+function deleteAll()
+{
+for (i = 0; i < localStorage.length; i++)   {
+		document.getElementById("del").hidden=false;
+    k=localStorage.key(i) ;
+	ch=k.split("-");
+	if(ch[0]=="chart")
+	{
+	localStorage.removeItem(k);
+	}
 	}
 	
-	//+ "=[" + localStorage.getItem(localStorage.key(i)) + "]");
-}
+	
 }
 		</script>
 	</head>
 	<body onload="dash();">
 		<h3>Dash Board</h3>
+		<button onclick="deleteAll();location.reload();" id="del" hidden>Delete All</button>
 		<div id ="charts">
 		</div>
 	

@@ -9,8 +9,8 @@
 body {
 	background:#ECF0F1;
 }
-a,
-a:hover {
+a,button
+a,button:hover {
 	text-decoration:none;
 }
 ul,
