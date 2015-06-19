@@ -3,11 +3,39 @@
 	<head>
 		<meta charset="UFT-8">
 		<title>Chart creation</title>
+		<script>
+		function dash(){
+		//localStorage.clear()
 		
+		for (i = 0; i < localStorage.length; i++)   {
+    k=localStorage.key(i) ;
+	ch=k.split("-");
+	if(ch[0]=="chart")
+	{
+			var div=document.createElement("div");
+			div.style.position="relative";
+			var t= document.createTextNode(ch[1]);
+			var img= document.createElement("img");
+	  img_data=localStorage.getItem(localStorage.key(i));
+	  console.log(img_data);
+	  img.src="data:image/png;base64,"+img_data;
+	  div.appendChild(t);
+	  div.appendChild(document.createElement("br"));
+	  div.appendChild(img);
+ document.body.appendChild(div);
+	  
+	 // console.log(ch[0]+"==="+img);
+	}
+	
+	//+ "=[" + localStorage.getItem(localStorage.key(i)) + "]");
+}
+}
+		</script>
 	</head>
-	<body>
+	<body onload="dash();">
 		<h3>Dash Board</h3>
-		
+		<div id ="charts">
+		</div>
 	
 	</body>
 </html>

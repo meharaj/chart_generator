@@ -81,10 +81,11 @@ canvg(c, res_var.getSVGString(), {
             });
 
 
-img_data = c.toDataURL("image/png").replace("image/png", 
-                "image/octet-stream;content-disposition:attachment; file-name="+name);
-localStorage.setItem(name,img_data);				
-window.location.href=img_data();
+img_data = c.toDataURL("image/png");
+img_data_1=img_data;
+				window.location.href=img_data_1.replace("image/png","image/octet-stream;content-disposition:attachment; file-name="+name);;
+localStorage.setItem("chart-"+name,img_data.replace(/^data:image\/(png|jpg);base64,/, ""));				
+
 				}
       </script>
   </head>
