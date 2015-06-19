@@ -73,15 +73,19 @@ genarate(type,1);
 }	  
 function save()
 {
+var name=prompt("enter chart name ");
 var c=document.getElementById("img");
 canvg(c, res_var.getSVGString(), { 
                 ignoreMouse: true, 
                 ignoreAnimation: true 
             });
-var c=document.getElementById("img");
-window.location.href = c.toDataURL().replace("image/png", 
-                "image/octet-stream;content-disposition:attachment; filename=fusioncharts");
-}
+
+
+img_data = c.toDataURL("image/png").replace("image/png", 
+                "image/octet-stream;content-disposition:attachment; file-name="+name);
+localStorage.setItem(name,img_data);				
+window.location.href=img_data();
+				}
       </script>
   </head>
   <body>
